@@ -1,0 +1,139 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div style="text-align:center">
+  <h1>
+    Welcome to {{ title }}!
+  </h1>
+</div>
+<h1>Grouping by Example</h1>
+<ul *ngFor="let group of Countrydetails">
+  <li>{{group.country}}</li>
+<ul>
+  <li *ngFor="let person of group.people">
+    {{person.name}}
+  </li>
+</ul>
+</ul> 
+<hr>
+<h4> NgStyle Example</h4>
+<ul *ngFor="let person of Peoples">
+  <li [ngStyle]="{'color': getcolor(person.country)}">
+{{person.name}} - {{person.country}}
+  </li>
+</ul>
+<hr>
+<h4>using ngClass</h4>
+<p [ngClass]="'one two'">Using NgClass with String Example</p>
+
+<div *ngFor="let user of users" [ngClass]="'three four'">
+{{user}}
+</div>
+
+<p [ngClass]="{'one two': true}">This is ngClass using Object</p>
+<hr>
+
+<h4>Attribute Binding Example</h4>
+
+<table [attr.border]="bdr" height="200" width="400">
+  <tr>
+    <td [attr.colspan]="cols" text-align="centre">Student Details</td>
+   
+  </tr>
+  <tr>
+      <td>ID</td>
+      <td>Name</td>
+      <td>Class</td>
+    </tr>
+    <tr>
+        <td>001</td>
+        <td>Pranav Lmakhade</td>
+        <td>12th</td>
+      </tr>
+      
+</table>
+<hr>
+
+<h4>Event Binding Example</h4>
+
+<button (click)="showdata()">Click Me</button>
+<button (click)="show()">Show</button>
+<hr>
+
+<h4>Two Way Data Binding without using [(ngModel)] </h4>
+
+Enter Your Name : <input [value]='data' (input)='data=$event.target.value'> <br>
+Your Name : {{data}}
+<br><br>
+<h4>Two Way Data Binding using [(ngModel)]</h4>
+Enter Designation : <input [(ngModel)]='data1'><br>
+Your Designation : {{ data1 | uppercase }}
+<hr>
+
+<h4>Pipes Example</h4>
+
+<table border="1">
+  <tr>
+    <th>Emp code</th>
+    <th>Emp name</th>
+    <th>salary</th>
+    <th>DOB</th>
+  </tr>
+    <tr *ngFor="let employee of employees">
+      <td>{{employee.code}}</td>
+      <td>{{employee.name | uppercase}}</td>
+      <td>{{employee.salary}}</td>
+      <td>{{employee.DOB}}</td>
+    </tr>
+</table>
+  
+<hr>
+
+<h4>Parameterised pipes Example</h4>
+------DATE-------
+<div> {{dob1}} <br>
+Medium: {{dob1|date:"medium"| lowercase}} <br>
+Specific Format : {{dob1|date:"dd/mm/yyyy"}} <br> 
+medium time : {{dob1|date:"mediumTime"}} <br>
+Full Date : {{dob1|date:"fullDate"| uppercase}}
+<br><br>
+-----CURRENCY------
+<br>
+Salary: {{ salary1 | currency:'USD': true}}
+</div>
+<hr>
+
+<h2 style="color: blue">Date Pipes Examples</h2>
+
+<h3> Date :-{{currentdate}}</h3>
+<h3>Short Date :-{{currentdate|date:'shortDate'}}</h3>
+<h3>Long Date :-{{currentdate|date:'longDate'}}</h3>
+<h3>Fill Date :-{{currentdate|date:'fullDate'}}</h3>
+
+<h2 style="color: blue">Percent Pipes Examples</h2>
+
+<h3> number :-{{mynumber}}</h3>
+<h3>Percent number :-{{mynumber|percent}}</h3>
+<h3>Custom percent number :-{{mynumber|percent:'2.4-5'}}</h3>
+<hr>
+
+<h2 style="color: blue">JSON Pipes Examples</h2>
+
+<div>
+  Noramal  data :- {{employees}} <br>
+  JSON data :- {{employees|json}} <br>
+  JSON Slice data :- {{employees|slice:1:3|json}} <br>
+</div>
+
+<hr>
+
+<h2 style="color: blue">Custom Pipes Examples</h2>
+
+<table border="1">
+  <tr *ngFor="let emp of emps">
+    <td>{{emp.code}}</td>
+    <td>{{emp.name|mypipe:emp.gender}}</td>
+    <td>{{emp.gender}}</td>
+    <td>{{emp.salary}}</td>
+  </tr>
+</table>
+<hr>
+<router-outlet></router-outlet>
